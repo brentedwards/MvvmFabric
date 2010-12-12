@@ -1,0 +1,13 @@
+[Bb]in/
+[Oo]bj/
+Content/Videos/
+!/lib
+*.user
+*.suo
+_ReSharper.*
+*.sln.cache
+*.xap
+*.vspcc
+*.vscc 
+*.vssscc
+TestResults/
