@@ -7,7 +7,7 @@ namespace BrentEdwards.MVVM.Test.Messaging
 	[TestClass]
 	public sealed class ShowViewMessageTests
 	{
-		[TestMethod()]
+		[TestMethod]
 		public void CreateWithViewTarget()
 		{
 			var viewTarget = ViewTargets.DefaultView;
@@ -18,7 +18,7 @@ namespace BrentEdwards.MVVM.Test.Messaging
 			Assert.IsNull(message.LoadArgs);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Create()
 		{
 			var viewTarget = ViewTargets.DefaultView;

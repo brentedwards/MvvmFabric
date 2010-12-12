@@ -8,7 +8,7 @@ namespace BrentEdwards.MVVM.Test.Navigation
 	[TestClass]
 	public sealed class ViewConfigurationTests
 	{
-		[TestMethod()]
+		[TestMethod]
 		public void Create()
 		{
 			var view = new FrameworkElement();
@@ -19,7 +19,7 @@ namespace BrentEdwards.MVVM.Test.Navigation
 			Assert.IsNull(viewConfiguration.ViewModel);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void CreateWithViewModel()
 		{
 			var view = new FrameworkElement();

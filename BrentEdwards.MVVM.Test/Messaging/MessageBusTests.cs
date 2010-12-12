@@ -14,13 +14,13 @@ namespace BrentEdwards.MVVM.Test.Messaging
 			_Messages.Add(message);
 		}
 
-		[TestInitialize()]
+		[TestInitialize]
 		public void TestInitialize()
 		{
 			_Messages = new List<Object>();
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void SubscribeNotExisting()
 		{
 			var bus = new MessageBus();
@@ -33,7 +33,7 @@ namespace BrentEdwards.MVVM.Test.Messaging
 			Assert.AreSame(message, _Messages[0]);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void SubscribeExisting()
 		{
 			var bus = new MessageBus();
@@ -48,7 +48,7 @@ namespace BrentEdwards.MVVM.Test.Messaging
 			Assert.AreSame(message, _Messages[1]);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Unsubscribe()
 		{
 			var bus = new MessageBus();
@@ -62,7 +62,7 @@ namespace BrentEdwards.MVVM.Test.Messaging
 			Assert.AreEqual(0, _Messages.Count);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void PublishDifferent()
 		{
 			var bus = new MessageBus();

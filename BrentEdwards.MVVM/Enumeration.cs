@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 namespace BrentEdwards.MVVM
 {
@@ -23,6 +24,23 @@ namespace BrentEdwards.MVVM
 		public static implicit operator TValue(Enumeration<TValue> obj)
 		{
 			return obj.Value;
+		}
+
+		public override string ToString()
+		{
+			var fields = GetType().GetFields(BindingFlags.Static | BindingFlags.Public);
+			foreach (var field in fields)
+			{
+				var obj = field.GetValue(this);
+				var value = ((Enumeration<TValue>)obj).Value;
+
+				if (value.Equals(Value))
+				{
+					return field.Name;
+				}
+			}
+
+			return string.Empty;
 		}
 	}
 }
