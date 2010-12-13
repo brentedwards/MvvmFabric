@@ -52,6 +52,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionCommandTests.cs" />
     <Compile Include="Messaging\MessageBusTests.cs" />
     <Compile Include="Messaging\ShowViewMessageTests.cs" />
     <Compile Include="Navigation\ViewConfigurationTests.cs" />
