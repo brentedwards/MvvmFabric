@@ -60,6 +60,7 @@
     <Compile Include="Navigation\ViewResultTests.cs" />
     <Compile Include="Navigation\ViewTargetsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelBaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BrentEdwards.MVVM\BrentEdwards.MVVM.csproj">
