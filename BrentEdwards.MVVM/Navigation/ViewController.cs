@@ -8,10 +8,10 @@ namespace BrentEdwards.MVVM.Navigation
 {
 	public sealed class ViewController
 	{
-		private IViewPlacer ViewPlacer { get; set; }
-		private IViewAuthorizer ViewAuthorizer { get; set; }
 		private IMessageBus MessageBus { get; set; }
 		private IViewFactory ViewFactory { get; set; }
+		private IViewPlacer ViewPlacer { get; set; }
+		private IViewAuthorizer ViewAuthorizer { get; set; }
 
 		public ViewController(IMessageBus messageBus, IViewFactory viewFactory, IViewPlacer viewPlacer)
 		{

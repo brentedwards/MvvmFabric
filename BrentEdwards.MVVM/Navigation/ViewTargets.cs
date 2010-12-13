@@ -7,7 +7,7 @@ namespace BrentEdwards.MVVM
 {
 	public class ViewTargets : Enumeration<int>
 	{
-		protected ViewTargets()
+		protected internal ViewTargets()
 		{
 		}
 

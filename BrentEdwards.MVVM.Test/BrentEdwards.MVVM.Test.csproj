@@ -55,8 +55,10 @@
     <Compile Include="Messaging\MessageBusTests.cs" />
     <Compile Include="Messaging\ShowViewMessageTests.cs" />
     <Compile Include="Navigation\ViewConfigurationTests.cs" />
+    <Compile Include="Navigation\ViewControllerTests.cs" />
     <Compile Include="Navigation\ViewFactoryTests.cs" />
     <Compile Include="Navigation\ViewResultTests.cs" />
+    <Compile Include="Navigation\ViewTargetsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

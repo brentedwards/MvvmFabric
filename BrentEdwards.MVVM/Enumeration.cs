@@ -42,5 +42,21 @@ namespace BrentEdwards.MVVM
 
 			return string.Empty;
 		}
+
+		public override bool Equals(object obj)
+		{
+			var equal = false;
+			if (obj is Enumeration<TValue>)
+			{
+				var enumeration = (Enumeration<TValue>)obj;
+				equal = Value.Equals(enumeration.Value);
+			}
+			return equal;
+		}
+
+		public override int GetHashCode()
+		{
+			return Value.GetHashCode();
+		}
 	}
 }
