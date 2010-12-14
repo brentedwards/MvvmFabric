@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrentEdwards.MVVM.Test", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrentEdwards.MVVM.Movies.Core", "BrentEdwards.MVVM.Movies.Core\BrentEdwards.MVVM.Movies.Core.csproj", "{D10AC932-FFB4-4118-AE31-C628AA42BA91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrentEdwards.MVVM.Castle.Windsor", "BrentEdwards.MVVM.Castle.Windsor\BrentEdwards.MVVM.Castle.Windsor.csproj", "{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,16 @@ Global
 		{D10AC932-FFB4-4118-AE31-C628AA42BA91}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D10AC932-FFB4-4118-AE31-C628AA42BA91}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D10AC932-FFB4-4118-AE31-C628AA42BA91}.Release|x86.ActiveCfg = Release|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
