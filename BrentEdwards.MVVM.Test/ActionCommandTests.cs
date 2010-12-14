@@ -33,6 +33,25 @@ namespace BrentEdwards.MVVM.Test
 		}
 
 		[TestMethod]
+		public void CanExecute_Null_Generic()
+		{
+			var command = new ActionCommand<int>(null, i => { return true; });
+
+			Assert.IsTrue(((ICommand)command).CanExecute(null));
+		}
+
+		[TestMethod]
+		public void CanExecute_Object_Generic_Default()
+		{
+			var random = new Random();
+			Object parameter = random.Next();
+
+			var command = new ActionCommand<int>(null, null);
+
+			Assert.IsTrue(((ICommand)command).CanExecute(parameter));
+		}
+
+		[TestMethod]
 		public void Execute_Generic()
 		{
 			var random = new Random();
@@ -89,6 +108,17 @@ namespace BrentEdwards.MVVM.Test
 			var parameter = random.Next();
 
 			var command = new ActionCommand(null, () => { return true; });
+
+			Assert.IsTrue(command.CanExecute(parameter));
+		}
+
+		[TestMethod]
+		public void CanExecute_Default()
+		{
+			var random = new Random();
+			var parameter = random.Next();
+
+			var command = new ActionCommand(null, null);
 
 			Assert.IsTrue(command.CanExecute(parameter));
 		}

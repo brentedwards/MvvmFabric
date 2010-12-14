@@ -42,6 +42,10 @@ namespace BrentEdwards.MVVM
 			{
 				canExecute = CanExecute((TParameter)parameter);
 			}
+			else if (parameter == null)
+			{
+				canExecute = CanExecute(default(TParameter));
+			}
 
 			return canExecute;
 		}

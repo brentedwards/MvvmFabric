@@ -32,7 +32,7 @@
 				<Image.Source>
 					<BitmapImage
 						DecodePixelHeight="50"
-						UriSource="pack://application:,,,/Movies.Client;component/Images/g.png" />
+						UriSource="pack://application:,,,/BrentEdwards.MVVM.Movies;component/Images/g.png" />
 				</Image.Source>
 			</Image>
 		</DataTemplate>
@@ -41,7 +41,7 @@
 				<Image.Source>
 					<BitmapImage
 						DecodePixelHeight="50"
-						UriSource="pack://application:,,,/Movies.Client;component/Images/r.png" />
+						UriSource="pack://application:,,,/BrentEdwards.MVVM.Movies;component/Images/r.png" />
 				</Image.Source>
 			</Image>
 		</DataTemplate>

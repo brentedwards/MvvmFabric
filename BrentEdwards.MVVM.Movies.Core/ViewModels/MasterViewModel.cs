@@ -39,7 +39,7 @@ namespace BrentEdwards.MVVM.Movies.Core.ViewModels
 			}
 		}
 
-		public void SelectMovie(Object movie)
+		public void SelectMovie(Movie movie)
 		{
 			var message = new ShowViewMessage(MoviesViewTargets.Detail, movie);
 
