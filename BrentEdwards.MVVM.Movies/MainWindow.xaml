@@ -1,0 +1,14 @@
+﻿<Window x:Class="BrentEdwards.MVVM.Movies.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:view="clr-namespace:BrentEdwards.MVVM.Movies.Client.Views"
+        Title="MainWindow" Height="350" Width="525">
+	<DockPanel LastChildFill="True">
+		<view:QuickSearch DockPanel.Dock="Top" />
+		<TabControl x:Name="MainTabControl">
+			<TabItem Header="Master">
+				<view:Master />
+			</TabItem>
+		</TabControl>
+	</DockPanel>
+</Window>

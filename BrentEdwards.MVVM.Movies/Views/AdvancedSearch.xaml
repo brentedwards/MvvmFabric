@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="BrentEdwards.MVVM.Movies.Client.Views.AdvancedSearch"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:BrentEdwards.MVVM.Movies.Core.ViewModels;assembly=BrentEdwards.MVVM.Movies.Core">
+	<UserControl.DataContext>
+		<vm:AdvancedSearchViewModel />
+	</UserControl.DataContext>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Label Content="Keywords:" />
+		<TextBox Text="{Binding Keywords}" />
+		<Label Content="Genre:" />
+		<ComboBox ItemsSource="{Binding Genres}" SelectedItem="{Binding SelectedGenre}" />
+	</Grid>
+</UserControl>
