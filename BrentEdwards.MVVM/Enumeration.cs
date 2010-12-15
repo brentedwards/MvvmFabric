@@ -28,6 +28,7 @@ namespace BrentEdwards.MVVM
 
 		public override string ToString()
 		{
+			var blah = GetType();
 			var fields = GetType().GetFields(BindingFlags.Static | BindingFlags.Public);
 			foreach (var field in fields)
 			{
@@ -40,7 +41,7 @@ namespace BrentEdwards.MVVM
 				}
 			}
 
-			return string.Empty;
+			return Value.ToString();
 		}
 
 		public override bool Equals(object obj)

@@ -52,7 +52,7 @@ namespace BrentEdwards.MVVM.Test.Navigation
 		{
 			ViewTargets viewTarget = 0;
 
-			Assert.AreEqual(string.Empty, viewTarget.ToString());
+			Assert.AreEqual("0", viewTarget.ToString());
 		}
 
 		[TestMethod]

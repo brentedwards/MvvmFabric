@@ -20,6 +20,8 @@ namespace Movies.Client.Configuration
 		{
 			var container = new WindsorContainer();
 			ComponentContainer.Container = container;
+			
+			var viewConfigResolver = new WindsorViewConfigurationResolver(container);
 
 			container.Register(
 				Component.For<IMessageBus>()
@@ -36,10 +38,13 @@ namespace Movies.Client.Configuration
 					
 				Component.For<IViewFactory>()
 					.ImplementedBy<ViewFactory>()
-					.LifeStyle.Singleton);
+					.LifeStyle.Singleton,
 
-			var viewConfigResolver = new WindsorViewConfigurationResolver(container);
-			container.Register(Component.For<IViewConfigurationResolver>()
+				Component.For<ViewController>()
+					.ImplementedBy<ViewController>()
+					.LifeStyle.Singleton,
+					
+				Component.For<IViewConfigurationResolver>()
 				.Instance(viewConfigResolver));
 
 			InitNavigation(viewConfigResolver);
