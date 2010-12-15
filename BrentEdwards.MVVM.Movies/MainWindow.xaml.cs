@@ -17,86 +17,29 @@ using BrentEdwards.MVVM.Movies.Core;
 using Castle.MicroKernel.Registration;
 using BrentEdwards.MVVM.Movies.Core.Messaging;
 using BrentEdwards.MVVM.Messaging;
+using BrentEdwards.MVVM.Movies.Core.Navigation;
 
 namespace BrentEdwards.MVVM.Movies
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window, IViewPlacer
+	public partial class MainWindow : Window
 	{
 		private ViewController ViewController { get; set; }
-		private IMessageBus MessageBus { get; set; }
+		private IViewPlacer ViewPlacer { get; set; }
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			ComponentContainer.Container.Register(Component.For<IViewPlacer>().Instance(this));
+			ViewPlacer = new ViewPlacer(MainTabControl);
+
+			ComponentContainer.Container.Register(Component.For<IViewPlacer>().Instance(ViewPlacer));
 
 			ViewController = ComponentContainer.Container.Resolve<ViewController>();
-			
-			MessageBus = ComponentContainer.Container.Resolve<IMessageBus>();
-			MessageBus.Subscribe<CloseViewMessage>(HandleCloseView);
 		}
 
-		public void PlaceView(ViewResult viewResult)
-		{
-			var exists = false;
-			var title = GetTitleFromViewModel(viewResult.View.DataContext);
-			foreach (TabItem tabItem in MainTabControl.Items)
-			{
-				if (tabItem.Header.ToString() == title)
-				{
-					exists = true;
-					break;
-				}
-			}
-
-			if (!exists)
-			{
-				var newTabItem = new TabItem() { Header = title, Content = viewResult.View };
-				MainTabControl.Items.Add(newTabItem);
-
-				newTabItem.Focus();
-			}
-		}
-
-		private String GetTitleFromViewModel(Object viewModel)
-		{
-			var title = String.Empty;
-
-			var titledViewModel = viewModel as ITitledViewModel;
-			if (titledViewModel != null)
-			{
-				title = titledViewModel.Title;
-			}
-			else
-			{
-				throw new ArgumentException(
-					String.Format("'{0}' does not inherit from ITitledViewModel.",
-					viewModel.GetType().Name));
-			}
-
-			return title;
-		}
-
-		private void HandleCloseView(CloseViewMessage args)
-		{
-			TabItem openTabItem = null;
-			foreach (TabItem tabItem in MainTabControl.Items)
-			{
-				if (tabItem.Header.ToString() == args.ViewName)
-				{
-					openTabItem = tabItem;
-					break;
-				}
-			}
-
-			if (openTabItem != null)
-			{
-				MainTabControl.Items.Remove(openTabItem);
-			}
-		}
+		
 	}
 }
