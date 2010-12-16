@@ -59,20 +59,48 @@ namespace BrentEdwards.MVVM.Messaging
 
 		public void Publish<TMessage>(TMessage message)
 		{
+			var subscribers = RefreshAndGetSubscribers<TMessage>();
+			foreach (var subscriber in subscribers)
+			{
+				subscriber.Invoke(message);
+			}
+		}
+
+		private List<Action<TMessage>> RefreshAndGetSubscribers<TMessage>()
+		{
+			var toCall = new List<Action<TMessage>>();
+			var toRemove = new List<ActionReference>();
+
 			lock (_lock)
 			{
 				if (_subscribers.ContainsKey(typeof(TMessage)))
 				{
-					var references = _subscribers[typeof(TMessage)];
-					foreach (var reference in references)
+					var handlers = _subscribers[typeof(TMessage)];
+					foreach (var handler in handlers)
 					{
-						if (reference.IsAlive)
+						if (handler.IsAlive)
 						{
-							((Action<TMessage>)reference.Target).Invoke(message);
+							toCall.Add((Action<TMessage>)handler.Target);
 						}
+						else
+						{
+							toRemove.Add(handler);
+						}
+					}
+
+					foreach (var remove in toRemove)
+					{
+						handlers.Remove(remove);
+					}
+
+					if (handlers.Count == 0)
+					{
+						_subscribers.Remove(typeof(TMessage));
 					}
 				}
 			}
+
+			return toCall;
 		}
 	}
 }
