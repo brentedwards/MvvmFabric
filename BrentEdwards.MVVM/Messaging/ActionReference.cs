@@ -16,10 +16,10 @@ namespace BrentEdwards.MVVM.Messaging
 			get { return WeakReference.IsAlive; }
 		}
 
-		public ActionReference(Delegate @delegate)
+		public ActionReference(Delegate action)
 		{
-			Target = @delegate;
-			WeakReference = new WeakReference(@delegate.Target);
+			Target = action;
+			WeakReference = new WeakReference(action.Target);
 		}
 	}
 }
