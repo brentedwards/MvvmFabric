@@ -49,6 +49,7 @@
     <Compile Include="Messaging\IMessageBus.cs" />
     <Compile Include="Messaging\MessageBus.cs" />
     <Compile Include="Messaging\ShowViewMessage.cs" />
+    <Compile Include="Messaging\ActionReference.cs" />
     <Compile Include="Navigation\IViewAuthorizer.cs" />
     <Compile Include="Navigation\IViewConfigurationResolver.cs" />
     <Compile Include="Navigation\IViewFactory.cs" />

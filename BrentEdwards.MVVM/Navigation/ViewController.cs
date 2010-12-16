@@ -30,9 +30,11 @@ namespace BrentEdwards.MVVM.Navigation
 
 		private void Initialize()
 		{
-			MessageBus.Subscribe<ShowViewMessage>(HandleShowView);
+			//ShowViewAction = new Action<ShowViewMessage>(HandleShowView);
+			MessageBus.Subscribe<ShowViewMessage>(new Action<ShowViewMessage>(HandleShowView));//ShowViewAction);
 		}
 
+		private Action<ShowViewMessage> ShowViewAction { get; set; }
 		private void HandleShowView(ShowViewMessage args)
 		{
 			var canShowView = true;
