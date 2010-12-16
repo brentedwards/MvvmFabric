@@ -10,17 +10,17 @@ namespace MvvmFabric
 	{
 		public event EventHandler<RequestCloseEventArgs> RequestClose;
 
-		protected void NotifyCloseRequest()
+		protected internal void NotifyCloseRequest()
 		{
 			NotifyCloseRequest(true, null);
 		}
 
-		protected void NotifyCloseRequest(bool accepted)
+		protected internal void NotifyCloseRequest(bool accepted)
 		{
 			NotifyCloseRequest(accepted, null);
 		}
 
-		protected void NotifyCloseRequest(bool accepted, object viewResult)
+		protected internal void NotifyCloseRequest(bool accepted, object viewResult)
 		{
 			if (RequestClose != null)
 			{

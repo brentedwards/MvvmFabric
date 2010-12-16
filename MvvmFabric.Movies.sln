@@ -14,9 +14,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DBAB9175-7F22-4F1A-B4EF-04405BD82C31}"
 	ProjectSection(SolutionItems) = preProject
 		MvvmFabric.Movies.testsettings = MvvmFabric.Movies.testsettings
+		MvvmFabric.Movies.vsmdi = MvvmFabric.Movies.vsmdi
 	EndProjectSection
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = MvvmFabric.Movies.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
