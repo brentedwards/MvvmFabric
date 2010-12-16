@@ -42,7 +42,7 @@ namespace BrentEdwards.MVVM.Test.Navigation
 			var view = new FrameworkElement();
 			var viewController = GetViewController(false);
 			
-			var viewResult = new ViewResult(view);
+			var viewResult = new ViewResult(view, ViewTargets.DefaultView);
 			_viewFactory.Build(Arg.Any<ViewTargets>(), Arg.Any<Object>())
 				.Returns(viewResult);
 
@@ -58,7 +58,7 @@ namespace BrentEdwards.MVVM.Test.Navigation
 			var view = new FrameworkElement();
 			var viewController = GetViewController(true);
 
-			var viewResult = new ViewResult(view);
+			var viewResult = new ViewResult(view, ViewTargets.DefaultView);
 			_viewFactory.Build(Arg.Any<ViewTargets>(), Arg.Any<Object>())
 				.Returns(viewResult);
 
@@ -77,7 +77,7 @@ namespace BrentEdwards.MVVM.Test.Navigation
 			var view = new FrameworkElement();
 			var viewController = GetViewController(true);
 
-			var viewResult = new ViewResult(view);
+			var viewResult = new ViewResult(view, ViewTargets.DefaultView);
 			_viewFactory.Build(Arg.Any<ViewTargets>(), Arg.Any<Object>())
 				.Returns(viewResult);
 

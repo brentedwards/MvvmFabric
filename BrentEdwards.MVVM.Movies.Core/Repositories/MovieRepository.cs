@@ -23,7 +23,12 @@ namespace BrentEdwards.MVVM.Movies.Core.Repositories
 
 		public IList<Movie> Search(String keywords, Genres? genre, Ratings? rating)
 		{
-			var movies = _Movies.Where(m => m.Name.ToLower().Contains(keywords.ToLower()));
+			var movies = _Movies.AsEnumerable();
+
+			if (!string.IsNullOrEmpty(keywords))
+			{
+				movies = _Movies.Where(m => m.Name.ToLower().Contains(keywords.ToLower()));
+			}
 
 			if (genre.HasValue)
 			{

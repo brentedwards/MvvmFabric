@@ -14,5 +14,6 @@ namespace BrentEdwards.MVVM.Movies.Core.Navigation
 		}
 
 		public static ViewTargets Detail = 2;
+		public static ViewTargets AdvancedSearch = 3;
 	}
 }

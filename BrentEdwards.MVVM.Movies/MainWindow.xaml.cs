@@ -33,7 +33,7 @@ namespace BrentEdwards.MVVM.Movies
 		{
 			InitializeComponent();
 
-			ViewPlacer = new ViewPlacer(MainTabControl);
+			ViewPlacer = new ViewPlacer(this, MainTabControl);
 
 			ComponentContainer.Container.Register(Component.For<IViewPlacer>().Instance(ViewPlacer));
 

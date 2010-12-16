@@ -12,9 +12,10 @@ namespace BrentEdwards.MVVM.Test.Navigation
 		{
 			var view = new FrameworkElement();
 
-			var viewResult = new ViewResult(view);
+			var viewResult = new ViewResult(view, ViewTargets.DefaultView);
 
 			Assert.AreSame(view, viewResult.View);
+			Assert.AreEqual(ViewTargets.DefaultView, viewResult.ViewTarget);
 		}
 	}
 }

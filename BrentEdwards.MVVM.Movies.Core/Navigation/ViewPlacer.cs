@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using BrentEdwards.MVVM.Movies.Core.Messaging;
 using BrentEdwards.MVVM.Movies.Core.ViewModels;
 using BrentEdwards.MVVM.Messaging;
+using System.Windows;
 
 namespace BrentEdwards.MVVM.Movies.Core.Navigation
 {
@@ -14,34 +15,44 @@ namespace BrentEdwards.MVVM.Movies.Core.Navigation
 	{
 		private TabControl MainTabControl { get; set; }
 		private IMessageBus MessageBus { get; set; }
+		private ModalViewPlacer ModalViewPlacer { get; set; }
 
-		public ViewPlacer(TabControl mainTabControl)
+		public ViewPlacer(Window appWindow, TabControl mainTabControl)
 		{
 			MainTabControl = mainTabControl;
 
 			MessageBus = ComponentContainer.Container.Resolve<IMessageBus>();
 			MessageBus.Subscribe<CloseViewMessage>(HandleCloseView);
+
+			ModalViewPlacer = new ModalViewPlacer(appWindow, MessageBus);
 		}
 
 		public void PlaceView(ViewResult viewResult)
 		{
-			var exists = false;
-			var title = GetTitleFromViewModel(viewResult.View.DataContext);
-			foreach (TabItem tabItem in MainTabControl.Items)
+			if (viewResult.ViewTarget == MoviesViewTargets.AdvancedSearch)
 			{
-				if (tabItem.Header.ToString() == title)
-				{
-					exists = true;
-					break;
-				}
+				ModalViewPlacer.PlaceView(viewResult);
 			}
-
-			if (!exists)
+			else
 			{
-				var newTabItem = new TabItem() { Header = title, Content = viewResult.View };
-				MainTabControl.Items.Add(newTabItem);
+				var exists = false;
+				var title = GetTitleFromViewModel(viewResult.View.DataContext);
+				foreach (TabItem tabItem in MainTabControl.Items)
+				{
+					if (tabItem.Header.ToString() == title)
+					{
+						exists = true;
+						break;
+					}
+				}
 
-				newTabItem.Focus();
+				if (!exists)
+				{
+					var newTabItem = new TabItem() { Header = title, Content = viewResult.View };
+					MainTabControl.Items.Add(newTabItem);
+
+					newTabItem.Focus();
+				}
 			}
 		}
 

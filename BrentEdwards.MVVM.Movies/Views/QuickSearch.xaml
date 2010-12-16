@@ -10,6 +10,7 @@
 			<ColumnDefinition Width="Auto" />
 			<ColumnDefinition Width="*" />
 			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
 		</Grid.ColumnDefinitions>
 		<Label Content="Keywords:" />
 		<TextBox
@@ -19,5 +20,9 @@
 			Content="Search"
 			Grid.Column="2"
 			Command="{Binding SearchCommand}" />
+		<Button
+			Content="Advanced"
+			Grid.Column="3"
+			Command="{Binding AdvancedCommand}" />
 	</Grid>
 </UserControl>

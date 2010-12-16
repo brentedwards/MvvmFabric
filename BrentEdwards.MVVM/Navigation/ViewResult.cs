@@ -11,11 +11,13 @@ namespace BrentEdwards.MVVM.Navigation
 	/// </summary>
 	public class ViewResult
 	{
-		public ViewResult(FrameworkElement view)
+		public FrameworkElement View { get; private set; }
+		public ViewTargets ViewTarget { get; private set; }
+		
+		public ViewResult(FrameworkElement view, ViewTargets viewTarget)
 		{
 			View = view;
+			ViewTarget = viewTarget;
 		}
-
-		public FrameworkElement View { get; private set; }
 	}
 }

@@ -12,7 +12,7 @@ using Castle.Windsor;
 using BrentEdwards.MVVM.Movies.Client.Views;
 using BrentEdwards.MVVM.Castle.Windsor;
 
-namespace Movies.Client.Configuration
+namespace BrentEdwards.MVVM.Movies.Configuration
 {
 	public sealed class ContainerConfiguration
 	{
@@ -53,6 +53,7 @@ namespace Movies.Client.Configuration
 		private static void InitNavigation(IViewConfigurationResolver viewConfigResolver)
 		{
 			viewConfigResolver.RegisterViewConfiguration<Detail>(MoviesViewTargets.Detail);
+			viewConfigResolver.RegisterViewConfiguration<AdvancedSearch>(MoviesViewTargets.AdvancedSearch);
 		}
 	}
 }

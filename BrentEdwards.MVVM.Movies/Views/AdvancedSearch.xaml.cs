@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BrentEdwards.MVVM.Navigation;
 
 namespace BrentEdwards.MVVM.Movies.Client.Views
 {
 	/// <summary>
 	/// Interaction logic for AdvancedSearch.xaml
 	/// </summary>
-	public partial class AdvancedSearch : UserControl
+	public partial class AdvancedSearch : ModalView
 	{
 		public AdvancedSearch()
 		{

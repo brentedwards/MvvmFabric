@@ -39,7 +39,7 @@ namespace BrentEdwards.MVVM.Navigation
 
 			LoadViewModelHelper(view.DataContext, viewParams);
 
-			return new ViewResult(view);
+			return new ViewResult(view, viewTarget);
 		}
 
 		private void LoadViewModelHelper(Object viewModel, Object viewParams)

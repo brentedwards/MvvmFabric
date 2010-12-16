@@ -68,6 +68,7 @@
     <Compile Include="Repositories\IMovieRepository.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
     <Compile Include="ViewModels\AdvancedSearchViewModel.cs" />
+    <Compile Include="ViewModels\CoreModalViewModelBase.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\ITitledViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />

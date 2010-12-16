@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using Movies.Client.Configuration;
+using BrentEdwards.MVVM.Movies.Configuration;
 
 namespace BrentEdwards.MVVM.Movies
 {

@@ -6,15 +6,17 @@ using BrentEdwards.MVVM.Movies.Core.Models;
 
 namespace BrentEdwards.MVVM.Movies.Core.ViewModels
 {
-	public sealed class AdvancedSearchViewModel : CoreViewModelBase
+	public sealed class AdvancedSearchViewModel : CoreModalViewModelBase
 	{
 		public AdvancedSearchViewModel()
 			: base()
 		{
 			SearchCommand = new ActionCommand(Search);
+			CancelCommand = new ActionCommand(Cancel);
 		}
 
 		public ICommand SearchCommand { get; private set; }
+		public ICommand CancelCommand { get; private set; }
 
 		public IMessageBus MessageBus { get; set; }
 
@@ -72,6 +74,13 @@ namespace BrentEdwards.MVVM.Movies.Core.ViewModels
 			var message = new SearchMessage(Keywords, SelectedGenre, SelectedRating);
 
 			MessageBus.Publish<SearchMessage>(message);
+
+			NotifyCloseRequest(true);
+		}
+
+		public void Cancel()
+		{
+			NotifyCloseRequest(false);
 		}
 	}
 }
