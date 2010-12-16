@@ -13,8 +13,6 @@ namespace MvvmFabric.Navigation
 			ShowInTaskbar = false;
 			WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-			MouseLeftButtonDown += delegate { DragMove(); };
-
 			ShowDialog();
 		}
 
