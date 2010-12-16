@@ -54,8 +54,10 @@
   <ItemGroup>
     <Compile Include="ActionCommandTests.cs" />
     <Compile Include="Messaging\MessageBusTests.cs" />
+    <Compile Include="Messaging\ModalViewClosedMessageTests.cs" />
     <Compile Include="Messaging\ShowViewMessageTests.cs" />
     <Compile Include="ModalViewModelBaseTests.cs" />
+    <Compile Include="Navigation\ModalViewPlacerTests.cs" />
     <Compile Include="Navigation\ViewConfigurationTests.cs" />
     <Compile Include="Navigation\ViewControllerTests.cs" />
     <Compile Include="Navigation\ViewFactoryTests.cs" />
