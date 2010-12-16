@@ -15,8 +15,8 @@
           <Configuration>
             <CodeCoverage xmlns="">
               <Regular>
-                <CodeCoverageItem binaryFile="BrentEdwards.MVVM\bin\Debug\BrentEdwards.MVVM.dll" pdbFile="BrentEdwards.MVVM\bin\Debug\BrentEdwards.MVVM.pdb" instrumentInPlace="true" />
-                <CodeCoverageItem binaryFile="BrentEdwards.MVVM.Test\bin\Debug\BrentEdwards.MVVM.Test.dll" pdbFile="BrentEdwards.MVVM.Test\bin\Debug\BrentEdwards.MVVM.Test.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="MvvmFabric\bin\Debug\MvvmFabric.dll" pdbFile="MvvmFabric\bin\Debug\MvvmFabric.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="MvvmFabric.Test\bin\Debug\MvvmFabric.Test.dll" pdbFile="MvvmFabric.Test\bin\Debug\MvvmFabric.Test.pdb" instrumentInPlace="true" />
               </Regular>
             </CodeCoverage>
           </Configuration>

@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="MvvmFabric.Movies.Client.Views.Master"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:vm="clr-namespace:MvvmFabric.Movies.Core.ViewModels;assembly=MvvmFabric.Movies.Core"
+	xmlns:mod="clr-namespace:MvvmFabric.Movies.Core.Models;assembly=MvvmFabric.Movies.Core"
+	xmlns:conv="clr-namespace:MvvmFabric.Movies.Core.Conversion;assembly=MvvmFabric.Movies.Core"
+	x:Name="Root">
+	<UserControl.DataContext>
+		<vm:MasterViewModel />
+	</UserControl.DataContext>
+	<UserControl.Resources>
+		<Style x:Key="MovieStyle" TargetType="Button">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding Rating}">
+					<DataTrigger.Value>
+						<mod:Ratings>R</mod:Ratings>
+					</DataTrigger.Value>
+					<Setter Property="Background" Value="Red" />
+					<Setter Property="Foreground" Value="White" />
+				</DataTrigger>
+				<DataTrigger Binding="{Binding Rating}">
+					<DataTrigger.Value>
+						<mod:Ratings>G</mod:Ratings>
+					</DataTrigger.Value>
+					<Setter Property="Background" Value="Green" />
+					<Setter Property="Foreground" Value="White" />
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<DataTemplate x:Key="GTemplate">
+			<Image>
+				<Image.Source>
+					<BitmapImage
+						DecodePixelHeight="50"
+						UriSource="pack://application:,,,/MvvmFabric.Movies;component/Images/g.png" />
+				</Image.Source>
+			</Image>
+		</DataTemplate>
+		<DataTemplate x:Key="RTemplate">
+			<Image>
+				<Image.Source>
+					<BitmapImage
+						DecodePixelHeight="50"
+						UriSource="pack://application:,,,/MvvmFabric.Movies;component/Images/r.png" />
+				</Image.Source>
+			</Image>
+		</DataTemplate>
+		<conv:RatingTemplateSelector
+			x:Key="RatingSelector"
+			GTemplate="{StaticResource GTemplate}"
+			RTemplate="{StaticResource RTemplate}" />
+		<DataTemplate DataType="{x:Type mod:Movie}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<ContentControl
+					Content="{Binding Rating}"
+					ContentTemplateSelector="{StaticResource RatingSelector}" />
+				<Button
+					Content="{Binding Name}"
+					Command="{Binding Path=DataContext.MovieCommand, ElementName=Root}"
+					CommandParameter="{Binding}"
+					Grid.Column="1"
+					Margin="0,2"
+					Style="{StaticResource MovieStyle}" />
+			</Grid>
+		</DataTemplate>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<ListView Grid.ColumnSpan="2" ItemsSource="{Binding Movies}">
+		</ListView>
+		<Button
+			Content="New Movie"
+			Command="{Binding NewMovieCommand}"
+			Grid.Column="1"
+			Grid.Row="1"
+			Margin="0,5,0,0"/>
+	</Grid>
+</UserControl>
