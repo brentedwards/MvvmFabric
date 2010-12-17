@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Windows;
 
 namespace MvvmFabric
 {
 	/// <summary>
 	/// Base class for view models.
 	/// </summary>
-	public abstract class ViewModelBase : INotifyPropertyChanged
+	public abstract class ViewModelBase : DependencyObject
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 

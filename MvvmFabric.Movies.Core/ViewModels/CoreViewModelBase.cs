@@ -10,7 +10,10 @@ namespace MvvmFabric.Movies.Core.ViewModels
 	{
 		public CoreViewModelBase()
 		{
-			ComponentContainer.BuildUp(this);
+			if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+			{
+				ComponentContainer.BuildUp(this);
+			}
 		}
 	}
 }
