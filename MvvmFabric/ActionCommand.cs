@@ -6,6 +6,10 @@ using System.Windows.Input;
 
 namespace MvvmFabric
 {
+	/// <summary>
+	/// An ActionCommand is an ICommand which executes an Action with a specific parameter type.
+	/// </summary>
+	/// <typeparam name="TParameter">The type of parameter which the Action takes.</typeparam>
 	public sealed class ActionCommand<TParameter> : ICommand
 	{
 		public event EventHandler CanExecuteChanged;
@@ -13,11 +17,22 @@ namespace MvvmFabric
 		private Action<TParameter> ExecuteMethod { get; set; }
 		private Func<TParameter, bool> CanExecuteMethod { get; set; }
 
+		/// <summary>
+		/// Constructor for ActionCommand.
+		/// </summary>
+		/// <param name="executeMethod">The Action to be executed.</param>
 		public ActionCommand(Action<TParameter> executeMethod)
 		{
 			ExecuteMethod = executeMethod;
 		}
 
+		/// <summary>
+		/// Constructor for ActionCommand.
+		/// </summary>
+		/// <param name="executeMethod">The Action to be executed.</param>
+		/// <param name="canExecuteMethod">
+		/// The optional Func to be called when determining if the command can be executed.
+		/// </param>
 		public ActionCommand(Action<TParameter> executeMethod, Func<TParameter, bool> canExecuteMethod)
 			: this(executeMethod)
 		{
@@ -72,6 +87,9 @@ namespace MvvmFabric
 		}
 	}
 
+	/// <summary>
+	/// An ActionCommand is an ICommand which executes an Action.
+	/// </summary>
 	public sealed class ActionCommand : ICommand
 	{
 		public event EventHandler CanExecuteChanged;
@@ -79,11 +97,22 @@ namespace MvvmFabric
 		private Action ExecuteMethod { get; set; }
 		private Func<bool> CanExecuteMethod { get; set; }
 
+		/// <summary>
+		/// Constructor for ActionCommand.
+		/// </summary>
+		/// <param name="executeMethod">The Action to be executed.</param>
 		public ActionCommand(Action executeMethod)
 		{
 			ExecuteMethod = executeMethod;
 		}
 
+		/// <summary>
+		/// Constructor for ActionCommand.
+		/// </summary>
+		/// <param name="executeMethod">The Action to be executed.</param>
+		/// <param name="canExecuteMethod">
+		/// The optional Func to be called when determining if the command can be executed.
+		/// </param>
 		public ActionCommand(Action executeMethod, Func<bool> canExecuteMethod)
 			: this(executeMethod)
 		{

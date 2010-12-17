@@ -6,6 +6,15 @@ using System.Reflection;
 
 namespace MvvmFabric
 {
+	/// <summary>
+	/// A pseudo enumeration class which can be extended.
+	/// </summary>
+	/// <typeparam name="TValue">The type which the enumeration is based on.</typeparam>
+	/// <remarks>
+	/// This class is almost entirely based on a blog post by Hugh Ang,
+	/// "A Simple Design Pattern for Extensible Enumeration Types."
+	/// http://tigerang.blogspot.com/2007/05/simple-design-pattern-for-extensible.html
+	/// </remarks>
 	public abstract class Enumeration<TValue>
 		where TValue : struct
 	{
