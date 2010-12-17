@@ -2,7 +2,7 @@
 
 namespace MvvmFabric.Movies.Core.Navigation
 {
-	public sealed class MoviesViewTargets : ViewTargets
+	public class MoviesViewTargets : ViewTargets
 	{
 		protected internal MoviesViewTargets()
 		{
