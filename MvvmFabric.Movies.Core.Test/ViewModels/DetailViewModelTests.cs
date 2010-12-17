@@ -13,7 +13,7 @@ using NSubstitute;
 
 namespace MvvmFabric.Movies.Core.Tests.ViewModels
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class DetailViewModelTests
 	{
 		private List<String> _ChangedProperties;
@@ -22,7 +22,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			_ChangedProperties.Add(args.PropertyName);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void IsEditable()
 		{
 			_ChangedProperties = new List<String>();
@@ -35,7 +35,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsTrue(_ChangedProperties.Contains("IsEditable"));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void LoadMovie()
 		{
 			_ChangedProperties = new List<String>();
@@ -49,7 +49,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsTrue(_ChangedProperties.Contains("Movie"));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Title()
 		{
 			var viewModel = new DetailViewModel();
@@ -63,7 +63,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.AreEqual(String.Format("{0} Details", movie.Name), viewModel.Title);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Save()
 		{
 			var container = new WindsorContainer();
@@ -86,7 +86,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			repository.Received().Save(Arg.Is<Movie>(movie));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Close()
 		{
 			var container = new WindsorContainer();
@@ -110,7 +110,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.AreEqual(viewModel.Title, actualViewName);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Genres()
 		{
 			var viewModel = new DetailViewModel();
@@ -121,7 +121,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsTrue(genres.Length > 0);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Ratings()
 		{
 			var viewModel = new DetailViewModel();

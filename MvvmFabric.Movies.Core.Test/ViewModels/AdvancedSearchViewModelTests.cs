@@ -12,7 +12,7 @@ using NSubstitute;
 
 namespace MvvmFabric.Movies.Core.Tests.ViewModels
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class AdvancedSearchViewModelTests
 	{
 		private List<String> _ChangedProperties;
@@ -27,7 +27,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			_ChangedProperties = new List<String>();
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Keywords()
 		{
 			var viewModel = new AdvancedSearchViewModel();
@@ -40,7 +40,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsTrue(_ChangedProperties.Contains("Keywords"));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Genres()
 		{
 			var viewModel = new AdvancedSearchViewModel();
@@ -48,7 +48,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsNotNull(viewModel.Genres);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void SelectedGenre()
 		{
 			var viewModel = new AdvancedSearchViewModel();
@@ -61,7 +61,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsTrue(_ChangedProperties.Contains("SelectedGenre"));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Ratings()
 		{
 			var viewModel = new AdvancedSearchViewModel();
@@ -69,7 +69,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsNotNull(viewModel.Ratings);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void SelectedRating()
 		{
 			var viewModel = new AdvancedSearchViewModel();
@@ -82,7 +82,13 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsTrue(_ChangedProperties.Contains("SelectedRating"));
 		}
 
-		[TestMethod()]
+		private bool _viewAccepted;
+		void viewModel_RequestClose(object sender, MvvmFabric.Navigation.RequestCloseEventArgs e)
+		{
+			_viewAccepted = e.Accepted;
+		}
+
+		[TestMethod]
 		public void Search()
 		{
 			var container = new WindsorContainer();
@@ -107,12 +113,36 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			viewModel.SelectedGenre = genre;
 			viewModel.SelectedRating = rating;
 
+			_viewAccepted = false;
+			viewModel.RequestClose += viewModel_RequestClose;
 			viewModel.SearchCommand.Execute(null);
+			viewModel.RequestClose -= viewModel_RequestClose;
 
 			Assert.IsNotNull(searchMessage);
-			Assert.AreEqual(keywords, searchMessage.Keywords);
-			Assert.AreEqual(genre, searchMessage.Genre);
-			Assert.AreEqual(rating, searchMessage.Rating);
+			Assert.AreEqual(keywords, searchMessage.Keywords, "Keywords");
+			Assert.AreEqual(genre, searchMessage.Genre, "Genre");
+			Assert.AreEqual(rating, searchMessage.Rating, "Rating");
+			Assert.IsTrue(_viewAccepted);
+		}
+
+		[TestMethod]
+		public void Cancel()
+		{
+			var container = new WindsorContainer();
+			ComponentContainer.Container = container;
+
+			var messageBus = Substitute.For<IMessageBus>();
+			container.Register(
+				Castle.MicroKernel.Registration.Component.For<IMessageBus>().Instance(messageBus));
+
+			var viewModel = new AdvancedSearchViewModel();
+
+			_viewAccepted = true;
+			viewModel.RequestClose += viewModel_RequestClose;
+			viewModel.CancelCommand.Execute(null);
+			viewModel.RequestClose -= viewModel_RequestClose;
+
+			Assert.IsFalse(_viewAccepted);
 		}
 	}
 }

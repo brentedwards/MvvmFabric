@@ -8,13 +8,14 @@ using MvvmFabric.Movies.Core.ViewModels;
 using NSubstitute;
 using Castle.MicroKernel.Registration;
 using System.ComponentModel;
+using MvvmFabric.Movies.Core.Navigation;
 
 namespace MvvmFabric.Movies.Core.Tests.ViewModels
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class QuickSearchViewModelTests
 	{
-		[TestMethod()]
+		[TestMethod]
 		public void Search()
 		{
 			var container = new WindsorContainer();
@@ -45,10 +46,11 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			_ChangedProperties.Add(args.PropertyName);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Keywords()
 		{
 			_ChangedProperties = new List<String>();
+
 			var viewModel = new QuickSearchViewModel();
 			viewModel.PropertyChanged += HandlePropertyChanged;
 			var keywords = Guid.NewGuid().ToString();
@@ -57,6 +59,28 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 
 			Assert.AreEqual(keywords, viewModel.Keywords);
 			Assert.IsTrue(_ChangedProperties.Contains("Keywords"));
+		}
+
+		[TestMethod]
+		public void Advanced()
+		{
+			var container = new WindsorContainer();
+			ComponentContainer.Container = container;
+
+			ShowViewMessage showViewMessage = null;
+			var messageBus = Substitute.For<IMessageBus>();
+			messageBus
+				.When(bus => bus.Publish<ShowViewMessage>(Arg.Any<ShowViewMessage>()))
+				.Do(arg => showViewMessage = arg[0] as ShowViewMessage);
+
+			container.Register(
+				Castle.MicroKernel.Registration.Component.For<IMessageBus>().Instance(messageBus));
+
+			var viewModel = new QuickSearchViewModel();
+
+			viewModel.Advanced();
+
+			Assert.AreEqual(MoviesViewTargets.AdvancedSearch, showViewMessage.ViewTarget);
 		}
 	}
 }

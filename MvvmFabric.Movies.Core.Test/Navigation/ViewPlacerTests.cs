@@ -26,11 +26,20 @@ namespace MvvmFabric.Movies.Core.Test.Navigation
 			var container = new WindsorContainer();
 			ComponentContainer.Container = container;
 
+			_MessageBus = Substitute.For<IMessageBus>();
+			container.Register(Component.For<IMessageBus>().Instance(_MessageBus));
+		}
+
+		private void CreateContainerWithRealMessageBus()
+		{
+			var container = new WindsorContainer();
+			ComponentContainer.Container = container;
+
 			_MessageBus = new MessageBus();
 			container.Register(Component.For<IMessageBus>().Instance(_MessageBus));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void ShowView()
 		{
 			CreateContainer();
@@ -64,7 +73,7 @@ namespace MvvmFabric.Movies.Core.Test.Navigation
 			Assert.IsTrue(viewFound);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void ShowViewExists()
 		{
 			CreateContainer();
@@ -100,10 +109,74 @@ namespace MvvmFabric.Movies.Core.Test.Navigation
 			Assert.IsTrue(viewsFound == 1);
 		}
 
-		[TestMethod()]
-		public void CloseExists()
+		[TestMethod, ExpectedException(typeof(ArgumentException))]
+		public void ShowView_InvalidViewModel()
 		{
 			CreateContainer();
+
+			var viewModel = new object();
+
+			var view = new FrameworkElement();
+			view.DataContext = viewModel;
+			var viewTarget = ViewTargets.DefaultView;
+
+			var viewResult = new ViewResult(view, viewTarget);
+
+			var window = new Window();
+			var tabControl = new TabControl();
+			var viewPlacer = new ViewPlacer(window, tabControl);
+
+			viewPlacer.PlaceView(viewResult);
+		}
+
+		private class MockModalView : FrameworkElement, IModalView
+		{
+
+			public Window Owner { get; set; }
+			public bool Accepted { get; set; }
+			public object ViewResult { get; set; }
+
+			public bool ShowModalCalled { get; set; }
+			public void ShowModal()
+			{
+				ShowModalCalled = true;
+			}
+
+			public void OnRequestClose(object sender, RequestCloseEventArgs e)
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		[TestMethod]
+		public void ShowView_AdvancedSearch()
+		{
+			CreateContainer();
+
+			var title = Guid.NewGuid().ToString();
+
+			var viewModel = Substitute.For<IModalViewModel>();
+
+			var view = new MockModalView();
+			view.DataContext = viewModel;
+			var viewTarget = MoviesViewTargets.AdvancedSearch;
+
+			var viewResult = new ViewResult(view, viewTarget);
+
+			var window = new Window();
+			var tabControl = new TabControl();
+			var viewPlacer = new ViewPlacer(window, tabControl);
+
+			viewPlacer.PlaceView(viewResult);
+
+			Assert.IsTrue(view.ShowModalCalled);
+			_MessageBus.Received().Publish<ModalViewClosedMessage>(Arg.Any<ModalViewClosedMessage>());
+		}
+
+		[TestMethod]
+		public void CloseExists()
+		{
+			CreateContainerWithRealMessageBus();
 			
 			var title = Guid.NewGuid().ToString();
 
@@ -132,10 +205,10 @@ namespace MvvmFabric.Movies.Core.Test.Navigation
 			Assert.AreEqual(0, tabControl.Items.Count);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void CloseDoesNotExist()
 		{
-			CreateContainer();
+			CreateContainerWithRealMessageBus();
 			
 			var title = Guid.NewGuid().ToString();
 

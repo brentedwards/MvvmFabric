@@ -11,7 +11,7 @@ using NSubstitute;
 
 namespace MvvmFabric.Movies.Core.Tests.ViewModels
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class MasterViewModelTests
 	{
 		private IMessageBus _MessageBus;
@@ -36,7 +36,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 				Castle.MicroKernel.Registration.Component.For<IMovieRepository>().Instance(_MovieRepository));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Movies()
 		{
 			CreateContainer(true);
@@ -45,7 +45,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			Assert.IsNotNull(viewModel.Movies);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void MovieSelected()
 		{
 			CreateContainer(true);
@@ -56,7 +56,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			_MessageBus.Received().Publish<ShowViewMessage>(Arg.Any<ShowViewMessage>());
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void NewMovie()
 		{
 			CreateContainer(true);
@@ -67,7 +67,7 @@ namespace MvvmFabric.Movies.Core.Tests.ViewModels
 			_MessageBus.Received().Publish<ShowViewMessage>(Arg.Any<ShowViewMessage>());
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Search()
 		{
 			CreateContainer(false);

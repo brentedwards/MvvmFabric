@@ -6,10 +6,10 @@ using MvvmFabric.Movies.Core.Models;
 
 namespace MvvmFabric.Movies.Core.Tests.Models
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class MovieTests
 	{
-		[TestMethod()]
+		[TestMethod]
 		public void Create()
 		{
 			var movie = new Movie();
@@ -17,7 +17,7 @@ namespace MvvmFabric.Movies.Core.Tests.Models
 			Assert.AreEqual(-1, movie.Id);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void CreateWithParams()
 		{
 			var id = new Random().Next();
@@ -39,7 +39,7 @@ namespace MvvmFabric.Movies.Core.Tests.Models
 			_PropertiesChanged.Add(e.PropertyName);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Name()
 		{
 			_PropertiesChanged = new List<String>();
@@ -55,7 +55,7 @@ namespace MvvmFabric.Movies.Core.Tests.Models
 			Assert.IsTrue(_PropertiesChanged.Contains("Name"));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Genre()
 		{
 			_PropertiesChanged = new List<String>();
@@ -71,7 +71,7 @@ namespace MvvmFabric.Movies.Core.Tests.Models
 			Assert.IsTrue(_PropertiesChanged.Contains("Genre"));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Rating()
 		{
 			_PropertiesChanged = new List<String>();
@@ -87,7 +87,7 @@ namespace MvvmFabric.Movies.Core.Tests.Models
 			Assert.IsTrue(_PropertiesChanged.Contains("Rating"));
 		}
 
-		[TestMethod(), ExpectedException(typeof(NotImplementedException))]
+		[TestMethod, ExpectedException(typeof(NotImplementedException))]
 		public void Error()
 		{
 			var movie = new Movie();
@@ -95,7 +95,7 @@ namespace MvvmFabric.Movies.Core.Tests.Models
 			var error = movie.Error;
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void Validates()
 		{
 			var name = Guid.NewGuid().ToString();
@@ -107,7 +107,7 @@ namespace MvvmFabric.Movies.Core.Tests.Models
 			Assert.IsTrue(String.IsNullOrEmpty(validationError));
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void DoesNotValidate()
 		{
 			var movie = new Movie();

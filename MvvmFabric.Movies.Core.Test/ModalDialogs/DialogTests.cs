@@ -7,10 +7,10 @@ using NSubstitute;
 
 namespace MvvmFabric.Movies.Core.Tests.ModalDialogs
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class DialogTests
 	{
-		[TestMethod()]
+		[TestMethod]
 		public void ShowMessage()
 		{
 			var container = new WindsorContainer();

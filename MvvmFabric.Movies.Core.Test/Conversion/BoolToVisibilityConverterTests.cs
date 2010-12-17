@@ -5,10 +5,10 @@ using MvvmFabric.Movies.Core.Conversion;
 
 namespace MvvmFabric.Movies.Core.Tests.Conversion
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class BoolToVisibilityConverterTests
 	{
-		[TestMethod()]
+		[TestMethod]
 		public void ConvertTrue()
 		{
 			var converter = new BoolToVisibilityConverter();
@@ -18,7 +18,7 @@ namespace MvvmFabric.Movies.Core.Tests.Conversion
 			Assert.AreEqual(Visibility.Visible, visibility);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void ConvertFalse()
 		{
 			var converter = new BoolToVisibilityConverter();
@@ -28,7 +28,7 @@ namespace MvvmFabric.Movies.Core.Tests.Conversion
 			Assert.AreEqual(Visibility.Collapsed, visibility);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void ConvertNotBool()
 		{
 			var converter = new BoolToVisibilityConverter();
@@ -38,7 +38,7 @@ namespace MvvmFabric.Movies.Core.Tests.Conversion
 			Assert.AreEqual(Visibility.Visible, visibility);
 		}
 
-		[TestMethod(), ExpectedException(typeof(NotImplementedException))]
+		[TestMethod, ExpectedException(typeof(NotImplementedException))]
 		public void ConvertBack()
 		{
 			var converter = new BoolToVisibilityConverter();

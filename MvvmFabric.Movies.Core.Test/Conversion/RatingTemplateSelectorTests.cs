@@ -5,10 +5,10 @@ using MvvmFabric.Movies.Core.Models;
 
 namespace MvvmFabric.Movies.Core.Tests.Conversion
 {
-	[TestClass()]
+	[TestClass]
 	public sealed class RatingTemplateSelectorTests
 	{
-		[TestMethod()]
+		[TestMethod]
 		public void SelectTemplateG()
 		{
 			var gTemplate = new DataTemplate();
@@ -20,7 +20,7 @@ namespace MvvmFabric.Movies.Core.Tests.Conversion
 			Assert.AreSame(gTemplate, actualTemplate);
 		}
 
-		[TestMethod()]
+		[TestMethod]
 		public void SelectTemplateR()
 		{
 			var gTemplate = new DataTemplate();
