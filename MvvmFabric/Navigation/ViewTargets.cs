@@ -2,8 +2,16 @@
 
 namespace MvvmFabric
 {
+	/// <summary>
+	/// The ViewTargets is a pseudo enumeration used by the navagation.
+	/// </summary>
 	public class ViewTargets : Enumeration<int>
 	{
+		/// <summary>
+		/// The default view of the application.
+		/// </summary>
+		public static ViewTargets DefaultView = 1;
+
 		protected internal ViewTargets()
 		{
 		}
@@ -17,7 +25,5 @@ namespace MvvmFabric
 		{
 			return new ViewTargets(value);
 		}
-
-		public static ViewTargets DefaultView = 1;
 	}
 }

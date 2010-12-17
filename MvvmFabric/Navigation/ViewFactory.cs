@@ -7,7 +7,7 @@ using System.Reflection;
 namespace MvvmFabric.Navigation
 {
 	/// <summary>
-	/// Dynamic view builder that will instantiate views and their associated view
+	/// Dynamic view factory that will instantiate views and their associated view
 	/// models based on given parameters.
 	/// </summary>
 	public sealed class ViewFactory : IViewFactory
@@ -21,11 +21,27 @@ namespace MvvmFabric.Navigation
 			ViewConfigResolver = viewConfigResolver;
 		}
 
+		/// <summary>
+		/// Builds a view for a specific <see cref="ViewTargets"/> value.
+		/// </summary>
+		/// <param name="viewTarget">
+		/// The <see cref="ViewTargets"/> value to build the view for.
+		/// </param>
+		/// <returns>Returns a <see cref="ViewResult"/> containing the view.</returns>
 		public ViewResult Build(ViewTargets viewTarget)
 		{
 			return Build(viewTarget, null);
 		}
 
+		/// <summary>
+		/// Builds a view for a specific <see cref="ViewTargets"/> value with an optional
+		/// parameter used to load the view.
+		/// </summary>
+		/// <param name="viewTarget">
+		/// The <see cref="ViewTargets"/> value to build the view for.
+		/// </param>
+		/// <param name="viewParams">The parameter used to load the view.</param>
+		/// <returns>Returns a <see cref="ViewResult"/> containing the view.</returns>
 		public ViewResult Build(ViewTargets viewTarget, Object viewParams)
 		{
 			var viewConfig = ViewConfigResolver.ResolveConfiguration(viewTarget);

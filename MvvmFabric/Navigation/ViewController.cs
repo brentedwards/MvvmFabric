@@ -6,6 +6,10 @@ using MvvmFabric.Messaging;
 
 namespace MvvmFabric.Navigation
 {
+	/// <summary>
+	/// The ViewController listens for requests to show views and facilitates creating,
+	/// loading and showing views when a request is received.
+	/// </summary>
 	public sealed class ViewController
 	{
 		private IMessageBus MessageBus { get; set; }
@@ -13,6 +17,18 @@ namespace MvvmFabric.Navigation
 		private IViewPlacer ViewPlacer { get; set; }
 		private IViewAuthorizer ViewAuthorizer { get; set; }
 
+		/// <summary>
+		/// Constructor for ViewController.
+		/// </summary>
+		/// <param name="messageBus">
+		/// The <see cref="IMessageBus"/> which will be used to listen for view requests.
+		/// </param>
+		/// <param name="viewFactory">
+		/// The <see cref="IViewFactory"/> which will be used to build the views.
+		/// </param>
+		/// <param name="viewPlacer">
+		/// The <see cref="IViewPlacer"/> which will be used to place the views.
+		/// </param>
 		public ViewController(IMessageBus messageBus, IViewFactory viewFactory, IViewPlacer viewPlacer)
 		{
 			MessageBus = messageBus;
@@ -22,6 +38,21 @@ namespace MvvmFabric.Navigation
 			Initialize();
 		}
 
+		/// <summary>
+		/// Constructor for ViewController which takes an optional <see cref="IViewAuthorizer"/>.
+		/// </summary>
+		/// <param name="messageBus">
+		/// The <see cref="IMessageBus"/> which will be used to listen for view requests.
+		/// </param>
+		/// <param name="viewFactory">
+		/// The <see cref="IViewFactory"/> which will be used to build the views.
+		/// </param>
+		/// <param name="viewPlacer">
+		/// The <see cref="IViewPlacer"/> which will be used to place the views.
+		/// </param>
+		/// <param name="viewAuthorizer">
+		/// The <see cref="IViewAuthorizer"/> which will be used to authorize views.
+		/// </param>
 		public ViewController(IMessageBus messageBus, IViewFactory viewFactory, IViewPlacer viewPlacer, IViewAuthorizer viewAuthorizer)
 			: this(messageBus, viewFactory, viewPlacer)
 		{

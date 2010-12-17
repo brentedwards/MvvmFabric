@@ -7,17 +7,35 @@ using System.Windows;
 
 namespace MvvmFabric.Navigation
 {
+	/// <summary>
+	/// A View Placer for Modal Views.
+	/// </summary>
 	public sealed class ModalViewPlacer : IViewPlacer
 	{
 		private Window AppWindow { get; set; }
 		private IMessageBus MessageBus { get; set; }
 
+		/// <summary>
+		/// Constructor for ModalViewPlacer
+		/// </summary>
+		/// <param name="appWindow">
+		/// The Window which owns the modal views.
+		/// </param>
+		/// <param name="messageBus">
+		/// The <see cref="IMessageBus"/> used by the application.
+		/// </param>
 		public ModalViewPlacer(Window appWindow, IMessageBus messageBus)
 		{
 			AppWindow = appWindow;
 			MessageBus = messageBus;
 		}
 
+		/// <summary>
+		/// Places a view into the user interface.
+		/// </summary>
+		/// <param name="viewResult">
+		/// The <see cref="ViewResult"/> containing the view to be placed.
+		/// </param>
 		public void PlaceView(ViewResult viewResult)
 		{
 			var view = viewResult.View as IModalView;

@@ -6,8 +6,24 @@ using System.Windows;
 
 namespace MvvmFabric.Navigation
 {
-	public class ModalView : Window, IModalView
+	/// <summary>
+	/// A base class for Modal Views.
+	/// </summary>
+	public abstract class ModalView : Window, IModalView
 	{
+		/// <summary>
+		/// Gets or sets whether the view was accepted or cancelled.
+		/// </summary>
+		public bool Accepted { get; set; }
+
+		/// <summary>
+		/// The optional result returned by the view.
+		/// </summary>
+		public object ViewResult { get; set; }
+
+		/// <summary>
+		/// Shows the view as a modal dialog.
+		/// </summary>
 		public void ShowModal()
 		{
 			ShowInTaskbar = false;
@@ -16,7 +32,11 @@ namespace MvvmFabric.Navigation
 			ShowDialog();
 		}
 
-
+		/// <summary>
+		/// Method which is called when the view is requested to be closed.
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		public void OnRequestClose(object sender, RequestCloseEventArgs e)
 		{
 			Accepted = e.Accepted;
@@ -24,8 +44,5 @@ namespace MvvmFabric.Navigation
 
 			Close();
 		}
-
-		public bool Accepted { get; set; }
-		public object ViewResult { get; set; }
 	}
 }
