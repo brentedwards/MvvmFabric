@@ -10,7 +10,7 @@ namespace MvvmFabric
 	/// <summary>
 	/// Base class for view models.
 	/// </summary>
-	public abstract class ViewModelBase : DependencyObject
+	public abstract class ViewModelBase : DependencyObject, INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 

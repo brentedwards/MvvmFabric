@@ -150,9 +150,6 @@
 				Content="Save"
 				Command="{Binding SaveCommand}"
 				Visibility="{Binding Path=IsEditable, Converter={StaticResource VisibilityConverter}}" />
-			<!--<Button
-				Content="Clear"
-				Visibility="{Binding Path=IsEditable, Converter={StaticResource VisibilityConverter}}" />-->
 			<Button
 				Content="Close"
 				Command="{Binding CloseCommand}"

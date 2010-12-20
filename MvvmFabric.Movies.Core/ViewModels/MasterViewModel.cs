@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Input;
 using MvvmFabric.Messaging;
 using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.Models;
 using MvvmFabric.Movies.Core.Navigation;
 using MvvmFabric.Movies.Core.Repositories;
-using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {

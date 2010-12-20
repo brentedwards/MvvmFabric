@@ -1,9 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using MvvmFabric.Messaging;
 using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.Models;
-using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {

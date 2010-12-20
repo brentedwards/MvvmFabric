@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using MvvmFabric.Messaging;
@@ -6,7 +7,6 @@ using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.ModalDialogs;
 using MvvmFabric.Movies.Core.Models;
 using MvvmFabric.Movies.Core.Repositories;
-using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {

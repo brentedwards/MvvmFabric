@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MvvmFabric;
+﻿using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {
@@ -10,7 +6,7 @@ namespace MvvmFabric.Movies.Core.ViewModels
 	{
 		public CoreViewModelBase()
 		{
-			if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+			if (!DesignerProperties.GetIsInDesignMode(this))
 			{
 				ComponentContainer.BuildUp(this);
 			}
