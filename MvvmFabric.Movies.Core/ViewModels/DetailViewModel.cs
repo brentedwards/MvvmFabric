@@ -6,12 +6,21 @@ using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.ModalDialogs;
 using MvvmFabric.Movies.Core.Models;
 using MvvmFabric.Movies.Core.Repositories;
+using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {
 	public sealed class DetailViewModel : CoreViewModelBase, ITitledViewModel
 	{
 		public DetailViewModel()
+		{
+			if (!DesignerProperties.GetIsInDesignMode(this))
+			{
+				Init();
+			}
+		}
+
+		private void Init()
 		{
 			SaveCommand = new ActionCommand(Save);
 			CloseCommand = new ActionCommand(Close);

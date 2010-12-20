@@ -3,6 +3,7 @@ using System.Windows.Input;
 using MvvmFabric.Messaging;
 using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.Navigation;
+using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {
@@ -11,8 +12,10 @@ namespace MvvmFabric.Movies.Core.ViewModels
 		public QuickSearchViewModel()
 			: base()
 		{
-			SearchCommand = new ActionCommand(Search);
-			AdvancedCommand = new ActionCommand(Advanced);
+			if (!DesignerProperties.GetIsInDesignMode(this))
+			{
+				Load();
+			}
 		}
 
 		public ICommand SearchCommand { get; private set; }
@@ -29,6 +32,12 @@ namespace MvvmFabric.Movies.Core.ViewModels
 				_Keywords = value;
 				NotifyPropertyChanged("Keywords");
 			}
+		}
+
+		public void Load()
+		{
+			SearchCommand = new ActionCommand(Search);
+			AdvancedCommand = new ActionCommand(Advanced);
 		}
 
 		public void Search()

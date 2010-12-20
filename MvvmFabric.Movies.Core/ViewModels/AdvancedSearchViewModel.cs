@@ -3,6 +3,7 @@ using System.Windows.Input;
 using MvvmFabric.Messaging;
 using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.Models;
+using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {
@@ -10,6 +11,14 @@ namespace MvvmFabric.Movies.Core.ViewModels
 	{
 		public AdvancedSearchViewModel()
 			: base()
+		{
+			if (!DesignerProperties.GetIsInDesignMode(this))
+			{
+				Init();
+			}
+		}
+
+		private void Init()
 		{
 			SearchCommand = new ActionCommand(Search);
 			CancelCommand = new ActionCommand(Cancel);

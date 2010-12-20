@@ -6,6 +6,7 @@ using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.Models;
 using MvvmFabric.Movies.Core.Navigation;
 using MvvmFabric.Movies.Core.Repositories;
+using System.ComponentModel;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {
@@ -14,12 +15,10 @@ namespace MvvmFabric.Movies.Core.ViewModels
 		public MasterViewModel()
 			: base()
 		{
-			MovieCommand = new ActionCommand<Movie>(SelectMovie);
-			NewMovieCommand = new ActionCommand(NewMovie);
-
-			MessageBus.Subscribe<SearchMessage>(HandleSearch);
-
-			Movies = MovieRepository.Load();
+			if (!DesignerProperties.GetIsInDesignMode(this))
+			{
+				Init();
+			}
 		}
 
 		public ICommand MovieCommand { get; private set; }
@@ -37,6 +36,16 @@ namespace MvvmFabric.Movies.Core.ViewModels
 				_Movies = value;
 				NotifyPropertyChanged("Movies");
 			}
+		}
+
+		private void Init()
+		{
+			MovieCommand = new ActionCommand<Movie>(SelectMovie);
+			NewMovieCommand = new ActionCommand(NewMovie);
+
+			MessageBus.Subscribe<SearchMessage>(HandleSearch);
+
+			Movies = MovieRepository.Load();
 		}
 
 		public void SelectMovie(Movie movie)
