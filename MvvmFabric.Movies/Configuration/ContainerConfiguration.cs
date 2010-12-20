@@ -20,8 +20,8 @@ namespace MvvmFabric.Movies.Configuration
 		{
 			var container = new WindsorContainer();
 			ComponentContainer.Container = container;
-			
-			var viewConfigResolver = new WindsorViewConfigurationResolver(container);
+
+			var viewConfigResolver = new ViewConfigurationResolver();
 
 			container.Register(
 				Component.For<IMessageBus>()

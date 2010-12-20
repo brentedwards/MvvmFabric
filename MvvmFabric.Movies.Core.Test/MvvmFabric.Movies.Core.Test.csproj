@@ -58,7 +58,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conversion\BoolToVisibilityConverterTests.cs" />
     <Compile Include="Conversion\RatingTemplateSelectorTests.cs" />
     <Compile Include="ModalDialogs\DialogTests.cs" />
     <Compile Include="Models\MovieTests.cs" />

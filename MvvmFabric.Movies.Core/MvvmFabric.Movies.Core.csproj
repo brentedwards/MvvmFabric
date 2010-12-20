@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentContainer.cs" />
-    <Compile Include="Conversion\BoolToVisibilityConverter.cs" />
     <Compile Include="Conversion\RatingTemplateSelector.cs" />
     <Compile Include="Messaging\CloseViewMessage.cs" />
     <Compile Include="Messaging\SearchMessage.cs" />
