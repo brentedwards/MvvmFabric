@@ -10,7 +10,6 @@ using MvvmFabric.Navigation;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using MvvmFabric.Movies.Client.Views;
-using MvvmFabric.Castle.Windsor;
 
 namespace MvvmFabric.Movies.Configuration
 {

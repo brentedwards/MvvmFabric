@@ -70,6 +70,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Navigation\ViewTargets.cs" />
     <Compile Include="ViewModelBase.cs" />
+    <Compile Include="Xaml\ExecuteEventArgs.cs" />
+    <Compile Include="Xaml\TriggerAction.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

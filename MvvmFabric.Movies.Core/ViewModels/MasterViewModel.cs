@@ -6,6 +6,7 @@ using MvvmFabric.Movies.Core.Messaging;
 using MvvmFabric.Movies.Core.Models;
 using MvvmFabric.Movies.Core.Navigation;
 using MvvmFabric.Movies.Core.Repositories;
+using MvvmFabric.Xaml;
 
 namespace MvvmFabric.Movies.Core.ViewModels
 {
@@ -49,6 +50,14 @@ namespace MvvmFabric.Movies.Core.ViewModels
 
 		public void SelectMovie(Movie movie)
 		{
+			var message = new ShowViewMessage(MoviesViewTargets.Detail, movie);
+
+			MessageBus.Publish<ShowViewMessage>(message);
+		}
+
+		public void MovieSelected(object sender, ExecuteEventArgs args)
+		{
+			var movie = args.MethodParameter as Movie;
 			var message = new ShowViewMessage(MoviesViewTargets.Detail, movie);
 
 			MessageBus.Publish<ShowViewMessage>(message);

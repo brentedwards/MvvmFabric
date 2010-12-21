@@ -4,6 +4,7 @@
 	xmlns:vm="clr-namespace:MvvmFabric.Movies.Core.ViewModels;assembly=MvvmFabric.Movies.Core"
 	xmlns:mod="clr-namespace:MvvmFabric.Movies.Core.Models;assembly=MvvmFabric.Movies.Core"
 	xmlns:conv="clr-namespace:MvvmFabric.Movies.Core.Conversion;assembly=MvvmFabric.Movies.Core"
+	xmlns:mvvm="clr-namespace:MvvmFabric.Xaml;assembly=MvvmFabric"
 	x:Name="Root">
 	<UserControl.DataContext>
 		<vm:MasterViewModel />
@@ -58,6 +59,9 @@
 				<ContentControl
 					Content="{Binding Rating}"
 					ContentTemplateSelector="{StaticResource RatingSelector}" />
+				
+				<!-- This illustrates how to use commanding to execute a command on the
+					 view model, passing the movie as a parameter. -->
 				<Button
 					Content="{Binding Name}"
 					Command="{Binding Path=DataContext.MovieCommand, ElementName=Root}"
@@ -77,8 +81,23 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
-		<ListView Grid.ColumnSpan="2" ItemsSource="{Binding Movies}">
-		</ListView>
+		<ListView
+			Name="MoviesList"
+			ItemsSource="{Binding Movies}"
+			Grid.ColumnSpan="2" />
+		
+		<!-- This illustrates how to use TriggerAction to listen for a double click
+			 on the movies ListView and have it call out to a method on the view model,
+			 passing it the selected movie. -->
+		<mvvm:TriggerAction
+			TargetControl="{Binding ElementName=MoviesList}"
+			MethodName="MovieSelected"
+			MethodParameter="{Binding Path=SelectedItem, ElementName=MoviesList}"
+			TriggerEvent="MouseDoubleClick"
+			RebindParameterDynamically="True"
+			Width="0"
+			Height="0" />
+		
 		<Button
 			Content="New Movie"
 			Command="{Binding NewMovieCommand}"

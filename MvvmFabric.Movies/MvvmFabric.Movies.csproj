@@ -134,10 +134,6 @@
     <Resource Include="Images\r.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MvvmFabric.Castle.Windsor\MvvmFabric.Castle.Windsor.csproj">
-      <Project>{33B4A4A9-FA77-42D1-9EF3-7081F66A9F1D}</Project>
-      <Name>MvvmFabric.Castle.Windsor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MvvmFabric.Movies.Core\MvvmFabric.Movies.Core.csproj">
       <Project>{D10AC932-FFB4-4118-AE31-C628AA42BA91}</Project>
       <Name>MvvmFabric.Movies.Core</Name>
