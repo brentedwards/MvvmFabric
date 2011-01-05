@@ -21,8 +21,7 @@ namespace MvvmFabric.Navigation
 		NotAuthorized,
 
 		/// <summary>
-		/// The user is authorized to see the view, but the view still
-		/// cannot be displayed.
+		/// Do not display the view.
 		/// </summary>
 		DoNotDisplay
 	}
