@@ -63,12 +63,31 @@ namespace MvvmFabric.Test.Navigation
 				.Returns(viewResult);
 
 			_viewAuthorizer.AuthorizeView(Arg.Any<ViewTargets>())
-				.Returns(true);
+				.Returns(ViewAuthorizations.Authorized);
 
 			var message = new ShowViewMessage(ViewTargets.DefaultView);
 			_messageBus.Publish<ShowViewMessage>(message);
 
 			_viewPlacer.Received().PlaceView(viewResult);
+		}
+
+		[TestMethod]
+		public void ShowViewDoNotDisplay()
+		{
+			var view = new FrameworkElement();
+			var viewController = GetViewController(true);
+
+			var viewResult = new ViewResult(view, ViewTargets.DefaultView);
+			_viewFactory.Build(Arg.Any<ViewTargets>(), Arg.Any<Object>())
+				.Returns(viewResult);
+
+			_viewAuthorizer.AuthorizeView(Arg.Any<ViewTargets>())
+				.Returns(ViewAuthorizations.DoNotDisplay);
+
+			var message = new ShowViewMessage(ViewTargets.DefaultView);
+			_messageBus.Publish<ShowViewMessage>(message);
+
+			_viewPlacer.DidNotReceive().PlaceView(viewResult);
 		}
 
 		[TestMethod, ExpectedException(typeof(InvalidOperationException))]
@@ -82,7 +101,7 @@ namespace MvvmFabric.Test.Navigation
 				.Returns(viewResult);
 
 			_viewAuthorizer.AuthorizeView(Arg.Any<ViewTargets>())
-				.Returns(false);
+				.Returns(ViewAuthorizations.NotAuthorized);
 
 			var message = new ShowViewMessage(ViewTargets.DefaultView);
 			_messageBus.Publish<ShowViewMessage>(message);

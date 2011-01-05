@@ -67,17 +67,17 @@ namespace MvvmFabric.Navigation
 		private Action<ShowViewMessage> ShowViewAction { get; set; }
 		private void HandleShowView(ShowViewMessage args)
 		{
-			var canShowView = true;
+			var viewauthorization = ViewAuthorizations.Authorized;
 			if (ViewAuthorizer != null)
 			{
-				canShowView = ViewAuthorizer.AuthorizeView(args.ViewTarget);
+				viewauthorization = ViewAuthorizer.AuthorizeView(args.ViewTarget);
 			}
 
-			if (canShowView)
+			if (viewauthorization == ViewAuthorizations.Authorized)
 			{
 				ShowView(args);
 			}
-			else
+			else if (viewauthorization == ViewAuthorizations.NotAuthorized)
 			{
 				throw new InvalidOperationException(string.Format("Not authorized to view '{0}'.", args.ViewTarget.ToString()));
 			}

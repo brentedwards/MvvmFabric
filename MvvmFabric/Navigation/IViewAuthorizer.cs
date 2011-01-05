@@ -6,6 +6,28 @@ using System.Text;
 namespace MvvmFabric.Navigation
 {
 	/// <summary>
+	/// Enumerates possible values for authorization results of views.
+	/// </summary>
+	public enum ViewAuthorizations
+	{
+		/// <summary>
+		/// The user is authorized to see the view.
+		/// </summary>
+		Authorized,
+
+		/// <summary>
+		/// The user is not authorized to see the view.
+		/// </summary>
+		NotAuthorized,
+
+		/// <summary>
+		/// The user is authorized to see the view, but the view still
+		/// cannot be displayed.
+		/// </summary>
+		DoNotDisplay
+	}
+
+	/// <summary>
 	/// An interface for a View Authorizer.  A View Authorizer determines whether a view
 	/// is authorized to be shown.
 	/// </summary>
@@ -18,6 +40,6 @@ namespace MvvmFabric.Navigation
 		/// The <see cref="ViewTargets"/> value indicating which view to check authorization for.
 		/// </param>
 		/// <returns>Returns whether the requested view is authorized to be shown.</returns>
-		bool AuthorizeView(ViewTargets viewTarget);
+		ViewAuthorizations AuthorizeView(ViewTargets viewTarget);
 	}
 }
