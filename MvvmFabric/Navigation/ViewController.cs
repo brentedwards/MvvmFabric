@@ -59,6 +59,29 @@ namespace MvvmFabric.Navigation
 			ViewAuthorizer = viewAuthorizer;
 		}
 
+		/// <summary>
+		/// Gets or sets whether a view model is required for a view.
+		/// </summary>
+		public bool IsViewModelRequiredForView
+		{
+			get
+			{
+				if (ViewFactory != null)
+				{
+					return ViewFactory.IsViewModelRequiredForView;
+				}
+				return true;
+			}
+
+			set
+			{
+				if (ViewFactory != null)
+				{
+					ViewFactory.IsViewModelRequiredForView = value;
+				}
+			}
+		}
+
 		private void Initialize()
 		{
 			MessageBus.Subscribe<ShowViewMessage>(HandleShowView);

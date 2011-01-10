@@ -46,12 +46,26 @@ namespace MvvmFabric.Test.Navigation
 			viewFactory.Build(ViewTargets.DefaultView, new Object());
 		}
 
-		[TestMethod, ExpectedException(typeof(NullReferenceException))]
+		[TestMethod, ExpectedException(typeof(ArgumentNullException))]
 		public void BuildThrowsExceptionWithViewAndNoViewModel()
 		{
 			var view = new FrameworkElement();
 
 			var viewFactory = GetViewFactory();
+
+			_viewConfigResolver.ResolveConfiguration(ViewTargets.DefaultView)
+				.Returns(new ViewConfiguration(view));
+
+			viewFactory.Build(ViewTargets.DefaultView);
+		}
+
+		[TestMethod]
+		public void BuildDoesNotThrowExceptionWithViewAndNoViewModelWhenViewModelIsNotRequired()
+		{
+			var view = new FrameworkElement();
+
+			var viewFactory = GetViewFactory();
+			viewFactory.IsViewModelRequiredForView = false;
 
 			_viewConfigResolver.ResolveConfiguration(ViewTargets.DefaultView)
 				.Returns(new ViewConfiguration(view));

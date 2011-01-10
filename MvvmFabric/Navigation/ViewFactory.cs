@@ -19,7 +19,15 @@ namespace MvvmFabric.Navigation
 		public ViewFactory(IViewConfigurationResolver viewConfigResolver)
 		{
 			ViewConfigResolver = viewConfigResolver;
+
+			// A view model is required by default.
+			IsViewModelRequiredForView = true;
 		}
+
+		/// <summary>
+		/// Gets or sets whether a view model is required for a view.
+		/// </summary>
+		public bool IsViewModelRequiredForView { get; set; }
 
 		/// <summary>
 		/// Builds a view for a specific <see cref="ViewTargets"/> value.
@@ -60,6 +68,15 @@ namespace MvvmFabric.Navigation
 
 		private void LoadViewModelHelper(Object viewModel, Object viewParams)
 		{
+			if (IsViewModelRequiredForView && viewModel == null)
+			{
+				throw new ArgumentNullException("viewModel", "A view is required to have a view model.");
+			}
+			else if (!IsViewModelRequiredForView && viewModel == null)
+			{
+				return;
+			}
+
 			var viewModelType = viewModel.GetType();
 
 			Object[] parms = null;

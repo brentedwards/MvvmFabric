@@ -12,6 +12,11 @@ namespace MvvmFabric.Navigation
 	public interface IViewFactory
 	{
 		/// <summary>
+		/// Gets or sets whether a view model is required for a view.
+		/// </summary>
+		bool IsViewModelRequiredForView { get; set; }
+
+		/// <summary>
 		/// Builds a view for a specific <see cref="ViewTargets"/> value.
 		/// </summary>
 		/// <param name="viewTarget">

@@ -106,5 +106,25 @@ namespace MvvmFabric.Test.Navigation
 			var message = new ShowViewMessage(ViewTargets.DefaultView);
 			_messageBus.Publish<ShowViewMessage>(message);
 		}
+
+		[TestMethod]
+		public void IsViewModelRequiredForView()
+		{
+			var viewController = GetViewController(false);
+
+			viewController.IsViewModelRequiredForView = true;
+
+			Assert.IsTrue(viewController.IsViewModelRequiredForView, "ViewController.IsViewModelRequiredForView");
+			Assert.IsTrue(_viewFactory.IsViewModelRequiredForView, "ViewFactory.IsViewModelRequiredForView");
+		}
+
+		[TestMethod]
+		public void IsViewModelRequiredForView_NoViewFactory()
+		{
+			_messageBus = new MessageBus();
+			var viewController = new ViewController(_messageBus, null, null);
+
+			Assert.IsTrue(viewController.IsViewModelRequiredForView);
+		}
 	}
 }
