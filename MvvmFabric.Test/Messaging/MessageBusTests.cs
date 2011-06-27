@@ -62,6 +62,43 @@ namespace MvvmFabric.Test.Messaging
 			Assert.AreEqual(0, _Messages.Count);
 		}
 
+		private class TestSubscriber
+		{
+			public List<Object> Messages { get; set; }
+
+			public TestSubscriber()
+			{
+				Messages = new List<Object>();
+			}
+
+			public void Handler(Object message)
+			{
+				Messages.Add(message);
+			}
+		}
+
+		[TestMethod]
+		public void Unsubscribe_MultipleInstances_SameClass()
+		{
+			var bus = new MessageBus();
+
+			// Subscribe two objects of the same type.
+			var subscriber1 = new TestSubscriber();
+			bus.Subscribe<Object>(subscriber1.Handler);
+
+			var subscriber2 = new TestSubscriber();
+			bus.Subscribe<Object>(subscriber2.Handler);
+
+			// Unsubscribe the second of the objects and make sure the other first one still gets messages.
+			bus.Unsubscribe<Object>(subscriber2.Handler);
+
+			var message = new Object();
+			bus.Publish<Object>(message);
+
+			Assert.AreEqual(0, subscriber2.Messages.Count);
+			Assert.AreEqual(1, subscriber1.Messages.Count);
+		}
+
 		[TestMethod]
 		public void PublishDifferent()
 		{

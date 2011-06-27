@@ -61,7 +61,8 @@ namespace MvvmFabric.Messaging
 					ActionReference targetReference = null;
 					foreach (var reference in handlers)
 					{
-						if (((Action<TMessage>)reference.Target).Method.Equals(handler.Method))
+						var action = (Action<TMessage>)reference.Target;
+						if ((action.Target == handler.Target) && action.Method.Equals(handler.Method))
 						{
 							targetReference = reference;
 							break;
