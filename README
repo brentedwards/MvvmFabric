@@ -1,7 +1,5 @@
 MVVM Fabric is a WPF-centric library which helps address common issues such as communication, navigation and commanding in an application leveraging MVVM.
 
-Check out the blog at http://mvvmfabric.com
-
 MVVM Fabric is written in C# 4.0 with solutions for Visual Studio 2010.
 
 MvvmFabric.sln is the solution for the library and it's tests.
